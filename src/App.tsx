@@ -19,7 +19,7 @@ const App = () => {
             {/* STEP 1 */}
             {/* <div className="grid">
                 {images.map(image => {
-                    return <img key={image} src={`/${image}.jpg`} />
+                    return <img key={image} src={`/${image}`} />
                 })}
             </div> */}
 
@@ -29,7 +29,7 @@ const App = () => {
                     return (
                         <img
                             key={image}
-                            src={`https://res.cloudinary.com/bradgarropy/image/upload/cloudinary-react-optimize-demo/${image}.jpg`}
+                            src={`https://res.cloudinary.com/bradgarropy/image/upload/cloudinary-react-optimize-demo/${image}`}
                         />
                     )
                 })}
@@ -39,7 +39,7 @@ const App = () => {
             <div className="grid">
                 {images.map(image => {
                     const imageUrl = cloudinary
-                        .image(`cloudinary-react-optimize-demo/${image}.jpg`)
+                        .image(`cloudinary-react-optimize-demo/${image}`)
                         .format("auto")
                         .quality("auto")
                         .resize(scale().width(400))
