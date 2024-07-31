@@ -1,5 +1,6 @@
 import "~/src/App.css"
 
+import {AdvancedImage} from "@cloudinary/react"
 import {Cloudinary} from "@cloudinary/url-gen"
 import {scale} from "@cloudinary/url-gen/actions/resize"
 
@@ -41,14 +42,13 @@ const App = () => {
             {/* STEP 3 */}
             <div className="grid">
                 {images.map(image => {
-                    const imageUrl = cloudinary
+                    const cldImg = cloudinary
                         .image(`cloudinary-react-optimize-demo/${image}`)
                         .format("auto")
                         .quality("auto")
                         .resize(scale().width(400))
-                        .toURL()
 
-                    return <img key={image} src={imageUrl} />
+                    return <AdvancedImage cldImg={cldImg} />
                 })}
             </div>
         </>
