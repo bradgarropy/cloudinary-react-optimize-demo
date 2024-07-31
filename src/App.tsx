@@ -1,44 +1,53 @@
 import "~/src/App.css"
 
-import {useState} from "react"
+import {Cloudinary} from "@cloudinary/url-gen"
+import {scale} from "@cloudinary/url-gen/actions/resize"
 
-import viteLogo from "/vite.svg"
-import reactLogo from "~/src/react.svg"
+const cloudinary = new Cloudinary({
+    cloud: {
+        cloudName: "bradgarropy",
+    },
+})
+
+const images = ["001", "002", "003", "004", "005", "006", "007", "008", "009"]
 
 const App = () => {
-    const [count, setCount] = useState(0)
-
     return (
         <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
+            <h1>Skylines</h1>
 
-                <a href="https://react.dev" target="_blank">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
-                    />
-                </a>
+            {/* STEP 1 */}
+            {/* <div className="grid">
+                {images.map(image => {
+                    return <img key={image} src={`/${image}.jpg`} />
+                })}
+            </div> */}
+
+            {/* STEP 2 */}
+            {/* <div className="grid">
+                {images.map(image => {
+                    return (
+                        <img
+                            key={image}
+                            src={`https://res.cloudinary.com/bradgarropy/image/upload/cloudinary-react-optimize-demo/${image}.jpg`}
+                        />
+                    )
+                })}
+            </div> */}
+
+            {/* STEP 3 */}
+            <div className="grid">
+                {images.map(image => {
+                    const imageUrl = cloudinary
+                        .image(`cloudinary-react-optimize-demo/${image}.jpg`)
+                        .format("auto")
+                        .quality("auto")
+                        .resize(scale().width(400))
+                        .toURL()
+
+                    return <img key={image} src={imageUrl} />
+                })}
             </div>
-
-            <h1>Vite + React</h1>
-
-            <div className="card">
-                <button onClick={() => setCount(count => count + 1)}>
-                    count is {count}
-                </button>
-
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
         </>
     )
 }
