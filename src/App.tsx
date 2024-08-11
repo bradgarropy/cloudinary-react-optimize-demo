@@ -8,9 +8,6 @@ const cloudinary = new Cloudinary({
     cloud: {
         cloudName: "bradgarropy",
     },
-    url: {
-        analytics: false,
-    },
 })
 
 const images = ["001", "002", "003", "004", "005", "006", "007", "008", "009"]
